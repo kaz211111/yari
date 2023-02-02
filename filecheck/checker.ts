@@ -247,8 +247,9 @@ export async function checkBinaryFile(
 
 function isRelevantFile(filePath: string) {
   return (
-    filePath.includes(`files${path.sep}en-us`) ||
-    filePath.includes(`files${path.sep}jsondata`)
+    (filePath.includes(`files${path.sep}en-us`) ||
+      filePath.includes(`files${path.sep}jsondata`)) &&
+    !/\.(DS_Store|ini)$/i.test(filePath)
   );
 }
 

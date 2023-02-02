@@ -206,7 +206,7 @@ export async function checkBinaryFile(
     const formattedAfter = formatSize(sizeAfter);
 
     // this check should only be done if we want to save the compressed file
-    if (sizeAfter > MAX_FILE_SIZE) {
+    if (sizeAfter > MAX_FILE_SIZE && stat.size > MAX_FILE_SIZE) {
       throw new Error(
         `${getRelativePath(
           filePath

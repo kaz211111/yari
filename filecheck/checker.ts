@@ -247,14 +247,14 @@ export async function checkBinaryFile(
 
 function isRelevantFile(filePath: string) {
   return (
-    (filePath.includes(`files${path.sep}en-us`) ||
+    (filePath.includes(`files${path.sep}`) ||
       filePath.includes(`files${path.sep}jsondata`)) &&
     !/\.(DS_Store|ini)$/i.test(filePath)
   );
 }
 
 function isBinaryFile(filePath: string) {
-  return !/\.(DS_Store|html|json|md|txt|yml)$/i.test(filePath);
+  return !/\.(html|json|md|txt|yml)$/i.test(filePath);
 }
 
 async function resolveDirectory(file: string): Promise<string[]> {
@@ -274,7 +274,7 @@ async function resolveDirectory(file: string): Promise<string[]> {
 }
 
 function validatePath(filePath: string): string[] {
-  const reasons = [];
+  const errors = [];
 
   const shortPath = path.join(
     path.basename(path.dirname(filePath)),
@@ -283,7 +283,7 @@ function validatePath(filePath: string): string[] {
 
   // Must have supported extension
   const supportedFilesRegExp =
-    /\.(md|DS_Store|json|txt|yml|jpg|jpeg|png|gif|svg)$/i;
+    /\.(md|json|txt|yml|jpg|jpeg|png|gif|svg)$/i;
   if (!supportedFilesRegExp.test(filePath)) {
     reasons.push(
       `Error: Invalid file: ${shortPath}. The file extension is not supported.`

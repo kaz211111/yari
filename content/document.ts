@@ -116,6 +116,8 @@ export function saveFile(
     "translation_of_original",
     "original_slug",
     "browser-compat",
+    "status",
+    "l10n",
   ];
 
   const saveMetadata = {};
